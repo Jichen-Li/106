@@ -18,3 +18,9 @@ class SignalDetection:
     def criterion (self):
         self.criterion = -0.5*(ndtri(self.hit_rate) + ndtri(self.fa_rate))
         return self.criterion
+
+    def __add__ (self, other):
+        return SignalDetection(self.hits + other.hits , self.misses + other.misses , self.FA + other.FA , self.CR + other.CR)
+
+    def __mul__ (self, scalar):
+        return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
