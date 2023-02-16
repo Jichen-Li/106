@@ -28,10 +28,9 @@ class SignalDetection:
 
     def plot_roc(self):
         o1 = np.array([0,1])
-        o2 = np.array([0,1])
         plt.figure(figsize=(6,6))
-        plt.plot(o1,o2, '--' , label = 'Optimal')
-        plt.plot(self.fa_rate , self.hits)
+        plt.plot(o1, '--' , label = 'Optimal')
+        plt.plot(self.fa_rate , self.hit_rate)
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
         plt.legend()
