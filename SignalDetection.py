@@ -8,11 +8,8 @@ class SignalDetection:
         self.misses = misses
         self.FA = FA
         self.CR = CR
-
-    def hit_rate(self):
-        self.hit_rate = self.hits/(self.hits + self.misses)
-    def fa_rate(self):
-        self.fa_rate = self.FA/(self.FA + self.CR)
+        self.hit_rate = hits/(hits + misses)
+        self.fa_rate = FA/(FA + CR)
 
     def d_prime(self):
         self.d_prime = ndtri(self.hit_rate) - ndtri(self.fa_rate)
@@ -21,4 +18,3 @@ class SignalDetection:
     def criterion (self):
         self.criterion = -0.5*(ndtri(self.hit_rate) + ndtri(self.fa_rate))
         return self.criterion
-
