@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.stats import norm
 from scipy.special import ndtri
 import matplotlib.pyplot as plt
 
@@ -34,4 +35,12 @@ class SignalDetection:
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
         plt.legend()
+        plt.show()
+
+    def plot_sdt(self):
+        c = SignalDetection.d_prime()/2
+        x = np.linspace(-4*c, 4*c, 100) # assume that standard deviation is 1
+        plt.plot(x, norm.pdf(x, c , 1))
+        plt.plot(x, norm.pdf(x, -c , 1))
+        plt.legend({'signal','noise'})
         plt.show()
