@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.special import ndtri
+import matplotlib.pyplot as plt
 
 class SignalDetection:
 
@@ -24,3 +25,13 @@ class SignalDetection:
 
     def __mul__ (self, scalar):
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
+
+    def plot_roc(self):
+        o1 = np.array([0,1])
+        o2 = np.array([0,1])
+        plt.figure(figsize=(6,6))
+        plt.plot(o1,o2, '--')
+        plt.plot(self.fa_rate , self.hits)
+        plt.xlabel('False Alarm Rate')
+        plt.ylabel('Hit Rate')
+        plt.show()
