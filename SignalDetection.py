@@ -28,19 +28,28 @@ class SignalDetection:
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
 
     def plot_roc(self):
+        hit_list = []
+        for i in range(len(self.hits)):
+            hit_list.append(self.hit_rate[i])
+        fa_list = []
+        for j in range(len(self.FA)):
+            fa_list.append(self.fa_rate[j])
+
         o1 = np.array([0,1])
         plt.figure(figsize=(6,6))
         plt.plot(o1, '--' , label = 'Optimal')
-        plt.plot(self.fa_rate , self.hit_rate)
+        plt.plot(fa_list , hit_list)
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
         plt.legend()
         plt.show()
 
     def plot_sdt(self):
-        c = SignalDetection.d_prime()/2
-        x = np.linspace(-4*c, 4*c, 100) # assume that standard deviation is 1
-        plt.plot(x, norm.pdf(x, c , 1))
-        plt.plot(x, norm.pdf(x, -c , 1))
+        d = SignalDetection.d_prime(self)
+        criterion = self.criterion()
+        x = np.linspace(-6, 6, 100) # assume that standard deviation is 1
+        plt.plot(x, norm.pdf(x, d/2 , 1))
+        plt.plot(x, norm.pdf(x, -d/2 , 1))
+        plt.axvline(x = criterion, color = 'b')
         plt.legend({'signal','noise'})
         plt.show()
