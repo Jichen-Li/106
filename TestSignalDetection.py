@@ -60,7 +60,7 @@ class TestSignalDetection(unittest.TestCase):
         sd = SignalDetection(rint[0], rint[1], rint[2], rint[3]) * 4
         sd.plot_roc()
 
-    def test_plot(self):
+    def test_plot_sdt(self):
         sd = SignalDetection(180, 230, 22, 5) * 4
         sd.plot_sdt()
 
