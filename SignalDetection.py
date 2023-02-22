@@ -50,5 +50,5 @@ class SignalDetection:
         plt.plot(x, norm.pdf(x, d/2 , 1))
         plt.plot(x, norm.pdf(x, -d/2 , 1))
         plt.axvline(x = criterion, color = 'b')
-        plt.legend({'signal','noise'})
+        plt.legend({'noise','signal'})
         plt.show()
