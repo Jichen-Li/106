@@ -28,16 +28,15 @@ class SignalDetection:
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
 
     def plot_roc(self):
-        hit_list = []
+        hit_list = [] # create a list containing hit counts across trials
         for i in range(len(self.hits)):
             hit_list.append(self.hit_rate[i])
         fa_list = []
         for j in range(len(self.FA)):
             fa_list.append(self.fa_rate[j])
-
         o1 = np.array([0,1])
         plt.figure(figsize=(6,6))
-        plt.plot(o1, '--' , label = 'Optimal')
+        plt.plot(o1, '--' , label = 'Optimal') # Optimal Performance
         plt.plot(fa_list , hit_list)
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
