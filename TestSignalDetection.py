@@ -52,10 +52,10 @@ class TestSignalDetection(unittest.TestCase):
         self.assertEqual(obtained, expected)
 
     def test_plot_roc(self):
-        rng = random.default_rng(seed = 3458)
+        rng = random.default_rng(seed = 3680)
         rint = dict()
         for i in range(4):
-            integer = rng.integers(1,20,10)
+            integer = rng.integers(1,20,1000)
             rint[i] = np.sort(integer)
         sd = SignalDetection(rint[0], rint[1], rint[2], rint[3]) * 4
         sd.plot_roc()
