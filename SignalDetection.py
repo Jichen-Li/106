@@ -35,6 +35,8 @@ class SignalDetection:
         for j in range(len(self.FA)):
             fa_list.append(self.fa_rate[j])
         o1 = np.array([0,1])
+        fa_list = np.sort(fa_list)
+        hit_list = np.sort(hit_list)
         plt.figure(figsize=(6,6))
         plt.plot(o1, '--' , label = 'Optimal') # Optimal Performance
         plt.plot(fa_list , hit_list)
