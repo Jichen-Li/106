@@ -31,7 +31,10 @@ class SignalDetection:
         point = [self.fa_rate, self.hit_rate] # a vector of the data point's coordinate
         start = [0,0]
         end = [1,1]
-
+        line1_x = [start[0],point[0]]
+        line2_x = [point[0],end[0]] # x-axis characteristics of the two connecting lines
+        line1_y = [start[1],point[1]]
+        line2_y = [point[1],end[1]] # y-axis characteristics of the two connecting lines
 
     def plot_sdt(self):
         d = SignalDetection.d_prime(self)
