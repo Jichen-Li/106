@@ -44,7 +44,6 @@ class SignalDetection:
         plt.legend()
         plt.show()
 
-
     def plot_sdt(self):
         d = SignalDetection.d_prime(self)
         criterion = self.criterion()
