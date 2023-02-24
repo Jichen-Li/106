@@ -52,7 +52,7 @@ class TestSignalDetection(unittest.TestCase):
         self.assertEqual(obtained, expected)
 
     def test_plot_roc(self):
-        sd = SignalDetection(1, 2, 3, 1)
+        sd = SignalDetection(19, 1, 1, 23) 
         sd.plot_roc()
 
     def test_plot_sdt(self):
