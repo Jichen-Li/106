@@ -49,8 +49,8 @@ class SignalDetection:
         d = SignalDetection.d_prime(self)
         criterion = self.criterion()
         x = np.linspace(-6, 6, 100) # assume that standard deviation is 1
-        plt.plot(x, norm.pdf(x, d/2 , 1))
-        plt.plot(x, norm.pdf(x, -d/2 , 1))
-        plt.axvline(x = criterion, color = 'b')
-        plt.legend({'noise','signal'})
+        plt.plot(x, norm.pdf(x, d/2 , 1),label = 'noise')
+        plt.plot(x, norm.pdf(x, -d/2 , 1),label = 'signal')
+        plt.axvline(x = criterion, color = 'black', label = 'criterion')
+        plt.legend()
         plt.show()
