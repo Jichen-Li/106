@@ -28,22 +28,10 @@ class SignalDetection:
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
 
     def plot_roc(self):
-        hit_list = [] # create a list containing hit counts across trials
-        for i in range(len(self.hits)):
-            hit_list.append(self.hit_rate[i])
-        fa_list = []
-        for j in range(len(self.FA)):
-            fa_list.append(self.fa_rate[j])
-        o1 = np.array([0,1])
-        fa_list = np.sort(fa_list)
-        hit_list = np.sort(hit_list)
-        plt.figure(figsize=(6,6))
-        plt.plot(o1, '--' , label = 'Optimal') # Optimal Performance
-        plt.plot(fa_list , hit_list)
-        plt.xlabel('False Alarm Rate')
-        plt.ylabel('Hit Rate')
-        plt.legend()
-        plt.show()
+        point = [self.fa_rate, self.hit_rate] # a vector of the data point's coordinate
+        start = [0,0]
+        end = [1,1]
+
 
     def plot_sdt(self):
         d = SignalDetection.d_prime(self)
@@ -54,3 +42,24 @@ class SignalDetection:
         plt.axvline(x = criterion, color = 'black', label = 'criterion')
         plt.legend()
         plt.show()
+
+
+### The code below is unrelated to hw3
+
+    # def plot_roc(self):
+    #     hit_list = [] # create a list containing hit counts across trials
+    #     for i in range(len(self.hits)):
+    #         hit_list.append(self.hit_rate[i])
+    #     fa_list = []
+    #     for j in range(len(self.FA)):
+    #         fa_list.append(self.fa_rate[j])
+    #     o1 = np.array([0,1])
+    #     fa_list = np.sort(fa_list)
+    #     hit_list = np.sort(hit_list)
+    #     plt.figure(figsize=(6,6))
+    #     plt.plot(o1, '--' , label = 'Optimal') # Optimal Performance
+    #     plt.plot(fa_list , hit_list)
+    #     plt.xlabel('False Alarm Rate')
+    #     plt.ylabel('Hit Rate')
+    #     plt.legend()
+    #     plt.show()
