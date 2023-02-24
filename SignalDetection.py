@@ -41,6 +41,9 @@ class SignalDetection:
         plt.plot([0,1], '--', color = 'b', label = 'Chance Performance') # Performance by chance
         plt.xlim([0,1])
         plt.ylim([0,1])
+        plt.title('Receiver Operating Characteristic')
+        plt.xlabel('False Alarm Rate')
+        plt.ylabel('Hit Rate')
         plt.legend()
         plt.show()
 
@@ -51,6 +54,7 @@ class SignalDetection:
         plt.plot(x, norm.pdf(x, 0 , 1),label = 'noise')
         plt.plot(x, norm.pdf(x, -d , 1),label = 'signal')
         plt.axvline(x = criterion, color = 'black', label = 'criterion')
+        plt.title('Noise vs. Signal distribution')
         plt.legend()
         plt.show()
 
