@@ -36,11 +36,12 @@ class SignalDetection:
         line1_y = [start[1],point[1]]
         line2_y = [point[1],end[1]] # y-axis characteristics of the two connecting lines
         plt.plot(self.fa_rate, self.hit_rate, marker = 'o') # plot the data point
-        plt.plot(line1_x,line1_y,'o')
-        plt.plot(line2_x,line2_y,'o') # plot the lines
-        plt.plot([0,1],'--') # Performance by chance
+        plt.plot(line1_x,line1_y,color = 'orange',label = 'ROC')
+        plt.plot(line2_x,line2_y,color = 'orange') # plot the lines
+        plt.plot([0,1], '--', color = 'b', label = 'Chance Performance') # Performance by chance
         plt.xlim([0,1])
         plt.ylim([0,1])
+        plt.legend()
         plt.show()
 
 
