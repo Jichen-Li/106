@@ -60,9 +60,7 @@ class SignalDetection:
 
     @staticmethod
     def simulate(dprime, criteriaList, signalCount, noiseCount):
-
         sdtList = list()
-
         for i in range(len(criteriaList)):
             hit_r = norm.cdf(0.5*dprime - criteriaList[i]) # we know this relation from the two equations defining dprime and criterion
             fa_r = norm.cdf(-0.5*dprime - criteriaList[i])  # these rates need be calculated using the dprime and criterion values given
@@ -70,8 +68,7 @@ class SignalDetection:
             misses = signalCount - hits
             correctRejections = noiseCount - falseAlarms
             sdt_object = SignalDetection(hits, misses, falseAlarms, correctRejections) # intermediate variable storing the class created
-            sdtList.append(sdt_object)
-        
+            sdtList.append(sdt_object)  
         return sdtList
 
     def nLogLikelihood(self,hit_r,fa_r):
