@@ -58,6 +58,21 @@ class SignalDetection:
         plt.legend()
         plt.show()
 
+    @staticmethod
+    def simulate(dprime, criteriaList, signalCount, noiseCount):
+        hits = list()
+        misses = list()
+        FA = list()
+        CR = list()
+
+        for i in range(len(criteriaList)):
+            hit_r = .6
+            fa_r = .4
+            hits,FA = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
+
+
+
+
 
 ### The code below is unrelated to hw3
 
