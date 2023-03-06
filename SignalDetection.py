@@ -64,7 +64,7 @@ class SignalDetection:
         sdtList = list()
 
         for i in range(len(criteriaList)):
-            hit_r = norm.cdf(0.5*dprime - criteriaList[i]) # we know from the two equations defining dprime and criterion
+            hit_r = norm.cdf(0.5*dprime - criteriaList[i]) # we know this relation from the two equations defining dprime and criterion
             fa_r = norm.cdf(-0.5*dprime - criteriaList[i])  # these rates need be calculated using the dprime and criterion values given
             hits, falseAlarms = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r]) # binomial rng
             misses = signalCount - hits
@@ -74,7 +74,8 @@ class SignalDetection:
         
         return sdtList
 
-
+    def nLogLikelihood(self,hit_r,fa_r):
+        return - self.hits * np.log(hit_r) - self.misses * np.log(1- hit_r) - self.falseAlarms * np.log(fa_r) - self.correctRejections * np.log(1 - fa_r)
 
 
 ### The code below is unrelated to hw3
