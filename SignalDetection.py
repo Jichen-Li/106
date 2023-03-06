@@ -28,24 +28,15 @@ class SignalDetection:
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.falseAlarms * scalar , self.correctRejections * scalar)
 
     def plot_roc(self):
-        point = [self.fa_rate, self.hit_rate] # a vector of the data point's coordinate
-        start = [0,0]
-        end = [1,1]
-        line1_x = [start[0],point[0]]
-        line2_x = [point[0],end[0]] # x-axis characteristics of the two connecting lines
-        line1_y = [start[1],point[1]]
-        line2_y = [point[1],end[1]] # y-axis characteristics of the two connecting lines
-        plt.plot(self.fa_rate, self.hit_rate, marker = 'o') # plot the data point
-        plt.plot(line1_x,line1_y,color = 'orange',label = 'ROC')
-        plt.plot(line2_x,line2_y,color = 'orange') # plot the lines
-        plt.plot([0,1], '--', color = 'b', label = 'Chance Performance') # Performance by chance
+        plt.plot(self.fa_rate, self.hit_rate, marker = 'o', color = 'black')
+        plt.plot([0,1], '--', color = 'b') # Performance by chance
         plt.xlim([0,1])
         plt.ylim([0,1])
         plt.title('Receiver Operating Characteristic')
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
         plt.legend()
-        plt.show()
+        # plt.show()
 
     def plot_sdt(self):
         d = SignalDetection.d_prime(self)
@@ -80,6 +71,9 @@ class SignalDetection:
         for i in len(fa_r):
             current_hit_rate = norm.cdf(a + ndtri(fa_r[i]))
             hit_r.append(current_hit_rate)
+
+    # @staticmethod
+    # def fit_roc():
 
 
 ### The code below is unrelated to hw3
