@@ -74,7 +74,9 @@ class SignalDetection:
 
     # @staticmethod
     # def fit_roc(sdtList):
-    #     loss_function = sum(sdtList.rocCurve(sdtList.fa_rate))
+    #     loss_function = 0
+    #     for j in range(len(sdtList)):
+    #         loss_function = sum()
     #     minimized_a = mini(loss_function)
 
 
