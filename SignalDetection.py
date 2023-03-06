@@ -64,12 +64,18 @@ class SignalDetection:
         misses = list()
         FA = list()
         CR = list()
+        sdtList = list()
 
         for i in range(len(criteriaList)):
             hit_r = .6
-            fa_r = .4
-            hits,FA = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
+            fa_r = .4  # these rates need be calculated using the dprime and criterion values given
+            hits[i],FA[i] = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
+            misses[i],CR[i] = np.random.binomial(n = [signalCount , noiseCount], p =[1 - hit_r , 1 - fa_r])
 
+        for j in range(len(criteriaList)):
+            sdtList.append(SignalDetection(hits[j], misses[j], FA[j], CR[j]))
+        
+        return sdtList
 
 
 
