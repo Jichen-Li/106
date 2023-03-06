@@ -36,7 +36,6 @@ class SignalDetection:
         plt.title('Receiver Operating Characteristic')
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
-        plt.legend()
         # plt.show()
 
     def plot_sdt(self):
@@ -73,10 +72,10 @@ class SignalDetection:
             current_hit_rate = norm.cdf(a + ndtri(fa_r[i]))
             hit_r.append(current_hit_rate)
 
-    @staticmethod
-    def fit_roc(sdtList):
-        loss_function = sum(sdtList.rocCurve(sdtList.fa_rate))
-        minimized_a = mini(loss_function)
+    # @staticmethod
+    # def fit_roc(sdtList):
+    #     loss_function = sum(sdtList.rocCurve(sdtList.fa_rate))
+    #     minimized_a = mini(loss_function)
 
 
 ### The code below is unrelated to hw3
