@@ -74,6 +74,13 @@ class SignalDetection:
     def nLogLikelihood(self,hit_r,fa_r):
         return - self.hits * np.log(hit_r) - self.misses * np.log(1- hit_r) - self.falseAlarms * np.log(fa_r) - self.correctRejections * np.log(1 - fa_r)
 
+    @staticmethod
+    def rocCurve(fa_r , a):
+        hit_r = []
+        for i in len(fa_r):
+            current_hit_rate = norm.cdf(a + ndtri(fa_r[i]))
+            hit_r.append(current_hit_rate)
+
 
 ### The code below is unrelated to hw3
 
