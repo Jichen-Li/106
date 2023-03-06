@@ -60,18 +60,16 @@ class SignalDetection:
 
     @staticmethod
     def simulate(dprime, criteriaList, signalCount, noiseCount):
-        hits = list()
-        misses = list()
-        FA = list()
-        CR = list()
+
         sdtList = list()
 
         for i in range(len(criteriaList)):
-            hit_r = .6
-            fa_r = .4  # these rates need be calculated using the dprime and criterion values given
-            hits,FA = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
-            misses,CR = np.random.binomial(n = [signalCount , noiseCount], p =[1 - hit_r , 1 - fa_r])
-            sdt_object = SignalDetection(hits, misses, FA, CR)
+            hit_r = norm.cdf(0.5*dprime - criteriaList[i]) # we know from the two equations defining dprime and criterion
+            fa_r = norm.cdf(-0.5*dprime - criteriaList[i])  # these rates need be calculated using the dprime and criterion values given
+            hits, falseAlarms = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r]) # binomial rng
+            misses = signalCount - hits
+            correctRejections = noiseCount - falseAlarms
+            sdt_object = SignalDetection(hits, misses, falseAlarms, correctRejections) # intermediate variable storing the class created
             sdtList.append(sdt_object)
         
         return sdtList
