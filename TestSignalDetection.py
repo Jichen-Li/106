@@ -99,19 +99,19 @@ class TestSignalDetection(unittest.TestCase):
             self.assertLessEqual (sdt.falseAlarms       ,  noiseCount)
             self.assertLessEqual (sdt.correctRejections ,  noiseCount)
    
-    # def test_nLogLikelihood(self):
-    #     """
-    #     Test case to verify nLogLikelihood calculation for a SignalDetection object.
-    #     """
-    #     sdt = SignalDetection(10, 5, 3, 12)
-    #     hit_rate = 0.5
-    #     false_alarm_rate = 0.2
-    #     expected_nll = - (10 * np.log(hit_rate) +
-    #                        5 * np.log(1-hit_rate) +
-    #                        3 * np.log(false_alarm_rate) +
-    #                       12 * np.log(1-false_alarm_rate))
-    #     self.assertAlmostEqual(sdt.nLogLikelihood(hit_rate, false_alarm_rate),
-    #                            expected_nll, places=6)
+    def test_nLogLikelihood(self):
+        """
+        Test case to verify nLogLikelihood calculation for a SignalDetection object.
+        """
+        sdt = SignalDetection(10, 5, 3, 12)
+        hit_rate = 0.5
+        false_alarm_rate = 0.2
+        expected_nll = - (10 * np.log(hit_rate) +
+                           5 * np.log(1-hit_rate) +
+                           3 * np.log(false_alarm_rate) +
+                          12 * np.log(1-false_alarm_rate))
+        self.assertAlmostEqual(sdt.nLogLikelihood(hit_rate, false_alarm_rate),
+                               expected_nll, places=6)
         
     # def test_rocLoss(self):
     #     """
