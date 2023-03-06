@@ -83,21 +83,21 @@ class TestSignalDetection(unittest.TestCase):
         self.assertEqual(sdt.falseAlarms      , sdtList[0].falseAlarms)
         self.assertEqual(sdt.correctRejections, sdtList[0].correctRejections)
 
-    # def test_simulate_multiple_criteria(self):
-    #     """
-    #     Test SignalDetection.simulate method with multiple criterion values.
-    #     """
-    #     dPrime       = 1.5
-    #     criteriaList = [-0.5, 0, 0.5]
-    #     signalCount  = 1000
-    #     noiseCount   = 1000
-    #     sdtList      = SignalDetection.simulate(dPrime, criteriaList, signalCount, noiseCount)
-    #     self.assertEqual(len(sdtList), 3)
-    #     for sdt in sdtList:
-    #         self.assertLessEqual (sdt.hits              ,  signalCount)
-    #         self.assertLessEqual (sdt.misses            ,  signalCount)
-    #         self.assertLessEqual (sdt.falseAlarms       ,  noiseCount)
-    #         self.assertLessEqual (sdt.correctRejections ,  noiseCount)
+    def test_simulate_multiple_criteria(self):
+        """
+        Test SignalDetection.simulate method with multiple criterion values.
+        """
+        dPrime       = 1.5
+        criteriaList = [-0.5, 0, 0.5]
+        signalCount  = 1000
+        noiseCount   = 1000
+        sdtList      = SignalDetection.simulate(dPrime, criteriaList, signalCount, noiseCount)
+        self.assertEqual(len(sdtList), 3)
+        for sdt in sdtList:
+            self.assertLessEqual (sdt.hits              ,  signalCount)
+            self.assertLessEqual (sdt.misses            ,  signalCount)
+            self.assertLessEqual (sdt.falseAlarms       ,  noiseCount)
+            self.assertLessEqual (sdt.correctRejections ,  noiseCount)
    
     # def test_nLogLikelihood(self):
     #     """
