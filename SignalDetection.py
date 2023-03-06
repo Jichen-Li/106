@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 
 class SignalDetection:
 
-    def __init__(self, hits, misses, FA, CR):
+    def __init__(self, hits, misses, falseAlarms, correctRejections):
         self.hits = hits
         self.misses = misses
-        self.FA = FA
-        self.CR = CR
+        self.falseAlarms = falseAlarms
+        self.correctRejections = correctRejections
         self.hit_rate = hits/(hits + misses)
-        self.fa_rate = FA/(FA + CR)
+        self.fa_rate = falseAlarms/(falseAlarms + correctRejections)
 
     def d_prime(self):
         self.d_prime = ndtri(self.hit_rate) - ndtri(self.fa_rate)
@@ -22,10 +22,10 @@ class SignalDetection:
         return self.criterion
 
     def __add__ (self, other):
-        return SignalDetection(self.hits + other.hits , self.misses + other.misses , self.FA + other.FA , self.CR + other.CR)
+        return SignalDetection(self.hits + other.hits , self.misses + other.misses , self.falseAlarms + other.falseAlarms , self.correctRejections + other.correctRejections)
 
     def __mul__ (self, scalar):
-        return SignalDetection(self.hits * scalar , self.misses * scalar , self.FA * scalar , self.CR * scalar)
+        return SignalDetection(self.hits * scalar , self.misses * scalar , self.falseAlarms * scalar , self.correctRejections * scalar)
 
     def plot_roc(self):
         point = [self.fa_rate, self.hit_rate] # a vector of the data point's coordinate
@@ -69,11 +69,10 @@ class SignalDetection:
         for i in range(len(criteriaList)):
             hit_r = .6
             fa_r = .4  # these rates need be calculated using the dprime and criterion values given
-            hits[i],FA[i] = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
-            misses[i],CR[i] = np.random.binomial(n = [signalCount , noiseCount], p =[1 - hit_r , 1 - fa_r])
-
-        for j in range(len(criteriaList)):
-            sdtList.append(SignalDetection(hits[j], misses[j], FA[j], CR[j]))
+            hits,FA = np.random.binomial(n = [signalCount , noiseCount], p =[hit_r , fa_r])
+            misses,CR = np.random.binomial(n = [signalCount , noiseCount], p =[1 - hit_r , 1 - fa_r])
+            sdt_object = SignalDetection(hits, misses, FA, CR)
+            sdtList.append(sdt_object)
         
         return sdtList
 
