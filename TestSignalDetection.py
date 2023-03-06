@@ -115,10 +115,10 @@ class TestSignalDetection(unittest.TestCase):
     
     def test_plot_roc(self):
         sdtList = [
-        SignalDetection( 8, 2, 1, 9),
-        SignalDetection(14, 1, 2, 8),
-        SignalDetection(10, 3, 1, 9),
-        SignalDetection(11, 2, 2, 8),
+           SignalDetection( 8, 2, 1, 9),
+           SignalDetection(14, 1, 2, 8),
+           SignalDetection(10, 3, 1, 9),
+           SignalDetection(11, 2, 2, 8),
         ]
         plt.figure(figsize= (5,5))
         for i in range(len(sdtList)):
