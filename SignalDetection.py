@@ -2,6 +2,7 @@ import numpy as np
 from scipy.stats import norm
 from scipy.special import ndtri
 from scipy.optimize import minimize as mini
+from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 class SignalDetection:
@@ -67,17 +68,16 @@ class SignalDetection:
 
     @staticmethod
     def rocCurve(fa_r , a):
-        hit_r = []
-        for i in len(fa_r):
-            current_hit_rate = norm.cdf(a + ndtri(fa_r[i]))
-            hit_r.append(current_hit_rate)
+        return norm.cdf(a + ndtri(fa_r))
 
-    # @staticmethod
-    # def fit_roc(sdtList):
-    #     loss_function = 0
-    #     for j in range(len(sdtList)):
-    #         loss_function = sum()
-    #     minimized_a = mini(loss_function)
+    @staticmethod
+    def rocLoss(a, sdtList):
+        cumulative_Likelihood = 0
+        hit_r = []
+        for i in range(len(sdtList)):
+            hit_r.append(SignalDetection.rocCurve(sdtList[i].fa_rate, a))
+            cumulative_Likelihood = cumulative_Likelihood + SignalDetection.nLogLikelihood(sdtList[i], hit_r, sdtList[i].fa_rate)
+        return cumulative_Likelihood
 
 
 ### The code below is unrelated to hw3
