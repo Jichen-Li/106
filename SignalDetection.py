@@ -76,7 +76,7 @@ class SignalDetection:
         return result.x[0]
 
     def plot_roc(self):
-        plt.plot(SignalDetection.rocCurve(sdtList.fa_rate, SignalDetection.fit_roc(sdtList)))
+        # add curve
         plt.plot(self.fa_rate, self.hit_rate, marker = 'o', color = 'black')
         plt.plot([0,1], '--', color = 'b') # Performance by chance
         plt.xlim([0,1])
@@ -85,24 +85,3 @@ class SignalDetection:
         plt.xlabel('False Alarm Rate')
         plt.ylabel('Hit Rate')
         # plt.show()
-
-
-### The code below is unrelated to hw3
-
-    # def plot_roc(self):
-    #     hit_list = [] # create a list containing hit counts across trials
-    #     for i in range(len(self.hits)):
-    #         hit_list.append(self.hit_rate[i])
-    #     fa_list = []
-    #     for j in range(len(self.FA)):
-    #         fa_list.append(self.fa_rate[j])
-    #     o1 = np.array([0,1])
-    #     fa_list = np.sort(fa_list)
-    #     hit_list = np.sort(hit_list)
-    #     plt.figure(figsize=(6,6))
-    #     plt.plot(o1, '--' , label = 'Optimal') # Optimal Performance
-    #     plt.plot(fa_list , hit_list)
-    #     plt.xlabel('False Alarm Rate')
-    #     plt.ylabel('Hit Rate')
-    #     plt.legend()
-    #     plt.show()
