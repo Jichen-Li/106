@@ -80,8 +80,10 @@ class SignalDetection:
         return cumulative_Likelihood
 
     @staticmethod
-    def fit_roc():
-        a_hat = np.argmin(SignalDetection.rocLoss(a, sdtList))
+    def fit_roc(sdtList):
+        point = np.random.randn()
+        result = mini(fun = SignalDetection.rocLoss, x0 = point, args = (sdtList))
+        return result.x[0]
 
 
 ### The code below is unrelated to hw3

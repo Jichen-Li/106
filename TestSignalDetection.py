@@ -139,15 +139,15 @@ class TestSignalDetection(unittest.TestCase):
         expected = 99.3884
         self.assertAlmostEqual(SignalDetection.rocLoss(a, sdtList), expected, places=4)
         
-    # def test_integration(self):
-    #     """
-    #     Test case to verify integration of SignalDetection simulation and ROC fitting.
-    #     """
-    #     dPrime  = 1
-    #     sdtList = SignalDetection.simulate(dPrime, [-1, 0, 1], 1e7, 1e7)
-    #     aHat    = SignalDetection.fit_roc(sdtList)
-    #     self.assertAlmostEqual(aHat, dPrime, places=2)
-    #     plt.close()
+    def test_integration(self):
+        """
+        Test case to verify integration of SignalDetection simulation and ROC fitting.
+        """
+        dPrime  = 1
+        sdtList = SignalDetection.simulate(dPrime, [-1, 0, 1], 1e7, 1e7)
+        aHat    = SignalDetection.fit_roc(sdtList)
+        self.assertAlmostEqual(aHat, dPrime, places=2)
+        plt.close()
         
 if __name__ == '__main__':
     unittest.main()
