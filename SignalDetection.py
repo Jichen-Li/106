@@ -76,8 +76,12 @@ class SignalDetection:
         hit_r = []
         for i in range(len(sdtList)):
             hit_r.append(SignalDetection.rocCurve(sdtList[i].fa_rate, a))
-            cumulative_Likelihood = cumulative_Likelihood + SignalDetection.nLogLikelihood(sdtList[i], hit_r, sdtList[i].fa_rate)
+            cumulative_Likelihood = cumulative_Likelihood + SignalDetection.nLogLikelihood(sdtList[i], hit_r[i], sdtList[i].fa_rate)
         return cumulative_Likelihood
+
+    @staticmethod
+    def fit_roc():
+        a_hat = np.argmin(SignalDetection.rocLoss(a, sdtList))
 
 
 ### The code below is unrelated to hw3

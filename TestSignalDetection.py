@@ -125,19 +125,19 @@ class TestSignalDetection(unittest.TestCase):
             sdtList[i].plot_roc()
         plt.show()
 
-    # def test_rocLoss(self):
-    #     """
-    #     Test case to verify rocLoss calculation for a list of SignalDetection objects.
-    #     """
-    #     sdtList = [
-    #         SignalDetection( 8, 2, 1, 9),
-    #         SignalDetection(14, 1, 2, 8),
-    #         SignalDetection(10, 3, 1, 9),
-    #         SignalDetection(11, 2, 2, 8),
-    #     ]
-    #     a = 0
-    #     expected = 99.3884
-    #     self.assertAlmostEqual(SignalDetection.rocLoss(a, sdtList), expected, places=4)
+    def test_rocLoss(self):
+        """
+        Test case to verify rocLoss calculation for a list of SignalDetection objects.
+        """
+        sdtList = [
+            SignalDetection( 8, 2, 1, 9),
+            SignalDetection(14, 1, 2, 8),
+            SignalDetection(10, 3, 1, 9),
+            SignalDetection(11, 2, 2, 8),
+        ]
+        a = 0
+        expected = 99.3884
+        self.assertAlmostEqual(SignalDetection.rocLoss(a, sdtList), expected, places=4)
         
     # def test_integration(self):
     #     """
