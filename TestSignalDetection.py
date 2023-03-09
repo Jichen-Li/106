@@ -113,18 +113,6 @@ class TestSignalDetection(unittest.TestCase):
         self.assertAlmostEqual(sdt.nLogLikelihood(hit_rate, false_alarm_rate),
                                expected_nll, places=6)
     
-    def test_plot_roc(self):
-        sdtList = [
-           SignalDetection( 8, 2, 1, 9),
-           SignalDetection(14, 1, 2, 8),
-           SignalDetection(10, 3, 1, 9),
-           SignalDetection(11, 2, 2, 8),
-        ]
-        plt.figure(figsize= (5,5))
-        for i in range(len(sdtList)):
-            sdtList[i].plot_roc()
-        plt.show()
-
     def test_rocLoss(self):
         """
         Test case to verify rocLoss calculation for a list of SignalDetection objects.
@@ -149,5 +137,18 @@ class TestSignalDetection(unittest.TestCase):
         self.assertAlmostEqual(aHat, dPrime, places=2)
         plt.close()
         
+
+    def test_plot_roc(self):
+        sdtList = [
+            SignalDetection( 8, 2, 1, 9),
+            SignalDetection(14, 1, 2, 8),
+            SignalDetection(10, 3, 1, 9),
+            SignalDetection(11, 2, 2, 8),
+        ]
+        plt.figure(figsize= (5,5))
+        for i in range(len(sdtList)):
+            sdtList[i].plot_roc()
+        plt.show()
+
 if __name__ == '__main__':
     unittest.main()
