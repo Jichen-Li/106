@@ -29,16 +29,6 @@ class SignalDetection:
     def __mul__ (self, scalar):
         return SignalDetection(self.hits * scalar , self.misses * scalar , self.falseAlarms * scalar , self.correctRejections * scalar)
 
-    def plot_roc(self):
-        plt.plot(self.fa_rate, self.hit_rate, marker = 'o', color = 'black')
-        plt.plot([0,1], '--', color = 'b') # Performance by chance
-        plt.xlim([0,1])
-        plt.ylim([0,1])
-        plt.title('Receiver Operating Characteristic')
-        plt.xlabel('False Alarm Rate')
-        plt.ylabel('Hit Rate')
-        # plt.show()
-
     def plot_sdt(self):
         d = SignalDetection.d_prime(self)
         criterion = self.criterion()
@@ -84,6 +74,17 @@ class SignalDetection:
         point = np.random.randn()
         result = mini(fun = SignalDetection.rocLoss, x0 = point, args = (sdtList))
         return result.x[0]
+
+    def plot_roc(self):
+        plt.plot(SignalDetection.rocCurve(sdtList.fa_rate, SignalDetection.fit_roc(sdtList)))
+        plt.plot(self.fa_rate, self.hit_rate, marker = 'o', color = 'black')
+        plt.plot([0,1], '--', color = 'b') # Performance by chance
+        plt.xlim([0,1])
+        plt.ylim([0,1])
+        plt.title('Receiver Operating Characteristic')
+        plt.xlabel('False Alarm Rate')
+        plt.ylabel('Hit Rate')
+        # plt.show()
 
 
 ### The code below is unrelated to hw3
