@@ -141,10 +141,10 @@ class TestSignalDetection(unittest.TestCase):
 # the following part is added to plot the data and the ROC curve
     def test_plot_roc(self):
         sdtList = [
-            SignalDetection( 8, 2, 1, 9),
-            SignalDetection(14, 1, 2, 8),
-            SignalDetection(10, 3, 1, 9),
-            SignalDetection(11, 2, 2, 8),
+            SignalDetection( 8, 29, 11, 9),
+            SignalDetection(14, 16, 25, 8),
+            SignalDetection(10, 39, 18, 9),
+            SignalDetection(11, 27, 23, 8),
         ]
         plt.figure(figsize= (5,5))
         SignalDetection.plot_roc(sdtList)

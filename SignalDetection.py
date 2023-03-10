@@ -2,7 +2,6 @@ import numpy as np
 from scipy.stats import norm
 from scipy.special import ndtri
 from scipy.optimize import minimize as mini
-from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 class SignalDetection:
@@ -62,6 +61,7 @@ class SignalDetection:
             y.append(SignalDetection.rocCurve(x[j], SignalDetection.fit_roc(sdtList))) # fitted y values
             plt.plot(sdtList[j].fa_rate, sdtList[j].hit_rate, marker = 'o', color = 'black') # original data points
         
+        # adding [0,0] and [1,1]
         x.append(0)
         x.append(1)
         y.append(0)
