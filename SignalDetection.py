@@ -58,7 +58,7 @@ class SignalDetection:
         for j in range(len(sdtList)):
             x = sdtList[j].fa_rate
             y = SignalDetection.rocCurve(x, SignalDetection.fit_roc(sdtList[j]))
-            plt.plot(sdtList.fa_rate, sdtList.hit_rate, marker = 'o', color = 'black')
+            plt.plot(x, sdtList[j].hit_rate, marker = 'o', color = 'black')
             plt.plot(x, y, '-')
         plt.plot([0,1], '--', color = 'b') # Performance by chance
         plt.xlim([0,1])
