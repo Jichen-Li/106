@@ -55,11 +55,16 @@ class SignalDetection:
 
     @staticmethod
     def plot_roc(sdtList):
+        x = []
+        y = []
         for j in range(len(sdtList)):
-            x = sdtList[j].fa_rate
-            y = SignalDetection.rocCurve(x, SignalDetection.fit_roc(sdtList[j]))
-            plt.plot(x, sdtList[j].hit_rate, marker = 'o', color = 'black')
-            plt.plot(x, y, '-')
+            x.append(sdtList[j].fa_rate) # fa rates on x-axis
+            y.append(SignalDetection.rocCurve(x[j], SignalDetection.fit_roc(sdtList))) # fitted y values
+            plt.plot(sdtList[j].fa_rate, sdtList[j].hit_rate, marker = 'o', color = 'black') # original data points
+        
+        x = np.array(x)
+        linespace = np.linspace(x.min(), x.max(), 500)
+        plt.plot(linespace, y, '-', color = 'red') # plotting the curve
         plt.plot([0,1], '--', color = 'b') # Performance by chance
         plt.xlim([0,1])
         plt.ylim([0,1])
