@@ -147,8 +147,7 @@ class TestSignalDetection(unittest.TestCase):
             SignalDetection(11, 2, 2, 8),
         ]
         plt.figure(figsize= (5,5))
-        for i in range(len(sdtList)):
-            SignalDetection.plot_roc(sdtList[i])
+        SignalDetection.plot_roc(sdtList)
         plt.show()
 
 if __name__ == '__main__':
