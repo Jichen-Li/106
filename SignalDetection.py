@@ -75,9 +75,12 @@ class SignalDetection:
         result = mini(fun = SignalDetection.rocLoss, x0 = point, args = (sdtList))
         return result.x[0]
 
-    def plot_roc(self):
-        # add curve
-        plt.plot(self.fa_rate, self.hit_rate, marker = 'o', color = 'black')
+    @staticmethod
+    def plot_roc(sdtList):
+        plt.plot(sdtList.fa_rate, sdtList.hit_rate, marker = 'o', color = 'black')
+        parameters, covariance = curve_fit(SignalDetection.rocCurve, sdtList.fa_rate, sdtList.hit_rate)
+        ahat = parameters[1] # get the a values
+        plt.plot(sdtList.fa_rate, ahat, '-')
         plt.plot([0,1], '--', color = 'b') # Performance by chance
         plt.xlim([0,1])
         plt.ylim([0,1])
