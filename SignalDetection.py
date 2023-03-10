@@ -53,6 +53,21 @@ class SignalDetection:
             sdtList.append(sdt_object)  
         return sdtList
 
+    @staticmethod
+    def plot_roc(sdtList):
+        for j in range(len(sdtList)):
+            x = sdtList[j].fa_rate
+            y = SignalDetection.rocCurve(x, SignalDetection.fit_roc(sdtList[j]))
+            plt.plot(sdtList.fa_rate, sdtList.hit_rate, marker = 'o', color = 'black')
+            plt.plot(x, y, '-')
+        plt.plot([0,1], '--', color = 'b') # Performance by chance
+        plt.xlim([0,1])
+        plt.ylim([0,1])
+        plt.title('Receiver Operating Characteristic')
+        plt.xlabel('False Alarm Rate')
+        plt.ylabel('Hit Rate')
+        # plt.show()
+
     def nLogLikelihood(self,hit_r,fa_r):
         return - self.hits * np.log(hit_r) - self.misses * np.log(1- hit_r) - self.falseAlarms * np.log(fa_r) - self.correctRejections * np.log(1 - fa_r)
 
@@ -74,18 +89,3 @@ class SignalDetection:
         point = np.random.randn()
         result = mini(fun = SignalDetection.rocLoss, x0 = point, args = (sdtList))
         return result.x[0]
-
-    @staticmethod
-    def plot_roc(sdtList):
-        for j in range(len(sdtList)):
-            x = sdtList[j].fa_rate
-            y = SignalDetection.rocCurve(x, SignalDetection.fit_roc(sdtList[j]))
-            plt.plot(x, y, '-')
-            
-        plt.plot([0,1], '--', color = 'b') # Performance by chance
-        plt.xlim([0,1])
-        plt.ylim([0,1])
-        plt.title('Receiver Operating Characteristic')
-        plt.xlabel('False Alarm Rate')
-        plt.ylabel('Hit Rate')
-        # plt.show()
