@@ -19,10 +19,14 @@ class Metropolis:
         else:
             return False
 
-    def step(self):
-        nextState = np.random.normal(loc=self.state, scale=self.stepSize)
-        logAcceptanceProb = self.logTarget(nextState) - self.logTarget(self.state)
-        if np.log(np.random.uniform()) < logAcceptanceProb:
-            self.state = nextState
-            self.samples.append(nextState)
-            self.acceptanceRate += 1.0 / len(self.samples)
+    def sample(self, nSamples):
+        self.samples = [self.state]
+        self.acceptanceRate = 0.4
+        for i in range(nSamples):
+            nextState = np.random.normal(loc=self.state, scale=self.stepSize)
+            logAcceptanceProb = self.logTarget(nextState) - self.logTarget(self.state)
+            if np.log(np.random.uniform()) < logAcceptanceProb:
+                self.state = nextState
+                self.samples.append(nextState)
+                self.acceptanceRate += 1.0 / len(self.samples)
+        return self
