@@ -30,3 +30,15 @@ class Metropolis:
                 self.samples.append(nextState)
                 self.acceptanceRate += 1.0 / len(self.samples)
         return self
+    
+    def adapt(self, blockLengths):
+        for i, blockLength in enumerate(blockLengths):
+            startIdx = i * blockLength
+            endIdx = startIdx + blockLength
+            blockSamples = self.samples[startIdx:endIdx]
+            blockAcceptanceRate = np.mean([self.logTarget(s) for s in blockSamples])
+            if blockAcceptanceRate > 0.234:
+                self.stepSize *= 1.1
+            else:
+                self.stepSize /= 1.1
+        return self
