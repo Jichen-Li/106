@@ -42,3 +42,13 @@ class Metropolis:
             else:
                 self.stepSize /= 1.1
         return self
+    
+    def summary(self):
+        return {
+            'mean': np.mean(self.samples),
+            'sd': np.std(self.samples),
+            'se': np.std(self.samples) / np.sqrt(len(self.samples)),
+            'c025': np.percentile(self.samples, 2.5),
+            'c975': np.percentile(self.samples, 97.5),
+            'acceptanceRate': self.acceptanceRate
+        }
